@@ -2,11 +2,15 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
+import gzip
+
 
 # ==============================
 # Cargar modelo, scaler y columnas
 # ==============================
-model = joblib.load("../models/final_model.pkl")
+with gzip.open("../models/final_model.pkl.gz", "rb") as f:
+    model = joblib.load(f)
+
 scaler = joblib.load("../models/scaler.pkl")
 saved_columns = joblib.load("../models/columns.pkl")
 
